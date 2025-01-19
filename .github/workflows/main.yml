@@ -17,3 +17,6 @@ jobs:
           pinata-secret-api-key: ${{ secrets.PINATA_SECRET_API_KEY}}
           verbose: true
           remove-old: false
+    # Use the output from the `deploy` step
+      - name: Get the output hash
+        run: echo "The hash was ${{ steps.deploy.outputs.hash }}"
