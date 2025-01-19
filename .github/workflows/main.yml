@@ -4,25 +4,11 @@ on:
   push:
     branches:
       - main  # Déclencher lors d'un push sur la branche principale
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Récupérer le code source
-      - name: Checkout repository
-        uses: actions/checkout@v3  # Récupère votre code source
-
-      # 2. Installer les dépendances (si nécessaire)
-      - name: Install dependencies
-        run: npm install  # Utilisez npm ou yarn selon votre projet
-
-      # 3. Construire le projet (si nécessaire)
-      - name: Build project
-        run: npm run build  # Exécute la commande de build, si nécessaire
-
-      # 4. Déployer sur IPFS via Pinata
+      # Déployer sur IPFS via Pinata
       - name: IPFS Pinata deploy GitHub action
         uses: popovoleksandr/ipfs-pinata-deploy-action@v1.6.3
         with:
