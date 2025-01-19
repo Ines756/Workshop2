@@ -13,7 +13,7 @@ jobs:
         uses: popovoleksandr/ipfs-pinata-deploy-action@v1.6.3
         with:
           pin-name: 'My personal site'
-          path: './build'
-          pinata_api_key: 2aa10484b328530809c5
-          pinata_secret_api_key: 0e3270c63bb662a9b966a5c15cd2d13fe3854ea606c5b1521ec17e084b706eb6
+          path: './.github/workflows/site2test'
+          pinata-api-key: ${{ secrets.IPFS_PINATA_DEPLOY_ACTION_API_KEY }}
+          pinata-secret-api-key: ${{ secrets.IPFS_PINATA_DEPLOY_ACTION_API_SECRET_KEY }}
           verbose: true
