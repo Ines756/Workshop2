@@ -1,19 +1,19 @@
 name: Deploy to IPFS
+on: [push]
 
-on:
-  push:
-    branches:
-      - main  # Déclencher lors d'un push sur la branche principale
 jobs:
-  deploy:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: Doing test deploy to Pinata
     steps:
-      # Déployer sur IPFS via Pinata
-      - name: IPFS Pinata deploy GitHub action
-        uses: popovoleksandr/ipfs-pinata-deploy-action@v1.6.3
+      - uses: actions/checkout@v2.1.0
+      - name: Pinata deploy action step
+        id: deploy
+        uses: anantaramdas/ipfs-pinata-deploy-action@v1.6.4
         with:
           pin-name: 'My personal site'
           path: './.github/workflows/site2test'
           pinata-api-key: ${{ secrets.IPFS_PINATA_DEPLOY_ACTION_API_KEY }}
           pinata-secret-api-key: ${{ secrets.IPFS_PINATA_DEPLOY_ACTION_API_SECRET_KEY }}
           verbose: true
+          remove-old: false
