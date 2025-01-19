@@ -1,2 +1,28 @@
-- name: IPFS Pinata deploy GitHub action
-  uses: popovoleksandr/ipfs-pinata-deploy-action@v1.6.3
+name: Deploy to IPFS
+
+on:
+  push:
+    branches:
+      - main  # Déclencher lors d'un push sur la branche principale
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Récupère votre code source
+
+      - name: Install dependencies
+        run: npm install  # Si votre projet nécessite des dépendances Node.js
+
+      - name: Build project
+        run: npm run build  # Si vous avez besoin de générer des fichiers à partir de votre projet
+
+      - name: IPFS Pinata deploy
+        uses: popovoleksandr/ipfs-pinata-deploy-action@v1.6.3
+        with:
+          pinata_api_key: 2aa10484b328530809c5
+          pinata_secret_api_key: 0e3270c63bb662a9b966a5c15cd2d13fe3854ea606c5b1521ec17e084b706eb6
+          pinata_jwt: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI2NjU4ZmM4Yi1kMjQ4LTQ3MDEtYmQxOS1hYTI3M2IyN2Q1NzQiLCJlbWFpbCI6ImluZXMuZGFyZGVAZWR1LmRldmluY2kuZnIiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicGluX3BvbGljeSI6eyJyZWdpb25zIjpbeyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJGUkExIn0seyJkZXNpcmVkUmVwbGljYXRpb25Db3VudCI6MSwiaWQiOiJOWUMxIn1dLCJ2ZXJzaW9uIjoxfSwibWZhX2VuYWJsZWQiOmZhbHNlLCJzdGF0dXMiOiJBQ1RJVkUifSwiYXV0aGVudGljYXRpb25UeXBlIjoic2NvcGVkS2V5Iiwic2NvcGVkS2V5S2V5IjoiMmFhMTA0ODRiMzI4NTMwODA5YzUiLCJzY29wZWRLZXlTZWNyZXQiOiIwZTMyNzBjNjNiYjY2MmE5Yjk2NmE1YzE1Y2QyZDEzZmUzODU0ZWE2MDZjNWIxNTIxZWMxN2UwODRiNzA2ZWI2IiwiZXhwIjoxNzY4NTk2Mjc3fQ.myF7-_AFcQGvuZHb35JxJKmI9Ym_kH6AOTH9LPaD1Go
+          file_path: ./dist  # Remplacez par le chemin de vos fichiers à déployer
