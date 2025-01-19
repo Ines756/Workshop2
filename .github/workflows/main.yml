@@ -16,10 +16,7 @@ jobs:
       - name: Install dependencies
         run: npm install  # Si votre projet nécessite des dépendances Node.js
 
-      - name: Build project
-        run: npm run build  # Si vous avez besoin de générer des fichiers à partir de votre projet
-
-      - name: IPFS Pinata deploy
+      - name: IPFS Pinata deploy GitHub action
         uses: popovoleksandr/ipfs-pinata-deploy-action@v1.6.3
         with:
           pinata_api_key: 2aa10484b328530809c5
